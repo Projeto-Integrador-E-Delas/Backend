@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "tb_categoria")
+@Table(name = "tb_categorias")
 public class Categorias {
 	
 	@Id
