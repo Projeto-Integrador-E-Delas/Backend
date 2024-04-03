@@ -1,4 +1,5 @@
-# Task 03
-![atv](atv_pt1.png)
-![atv](atv_pt2.png)
-![atv](atv_pt3.png)
+
+# Backend - eDelas
+## Task 03
+- Criar o projeto Spring no Spring Initializer;
+- Criar a primeira model (categoria) do projeto Spring.
