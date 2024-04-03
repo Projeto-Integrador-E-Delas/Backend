@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
+
 import com.generation.edelas.model.Categoria;
 import com.generation.edelas.repository.CategoriaRepository;
 
@@ -36,6 +37,13 @@ public class CategoriaController {
 	public ResponseEntity<List<Categoria>> getAll(){
 		return ResponseEntity.ok(categoriaRepository.findAll());
 	}
+	@GetMapping("/{id}")
+	public ResponseEntity<Categoria> getById(@PathVariable Long id){
+		return categoriaRepository.findById(id)
+				.map(resposta -> ResponseEntity.ok(resposta))
+				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+	}
+	
 	@GetMapping("/nome/{nome}")
     public ResponseEntity<List<Categoria>> getByNome(@PathVariable String nome) {
         return ResponseEntity.ok(categoriaRepository.findAllByNomeContainingIgnoreCase(nome));
