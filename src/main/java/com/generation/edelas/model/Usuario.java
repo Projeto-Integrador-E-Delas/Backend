@@ -1,6 +1,5 @@
 package com.generation.edelas.model;
 
-import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -21,109 +20,87 @@ import jakarta.validation.constraints.Size;
 @Table(name = "tb_usuarios")
 public class Usuario {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @NotBlank(message = "O atributo nome é Obrigatório!")
-    @Size(min = 3, max = 100, message = "O atributo nome deve conter no mínimo 3 e no máximo 100 caracteres")
-    private String nome;
+	@NotBlank(message = "O atributo nome é Obrigatório!")
+	@Size(min = 3, max = 100, message = "O atributo nome deve conter no mínimo 3 e no máximo 100 caracteres")
+	private String nome;
 
-    @Email
-    @NotBlank(message = "O atributo email é Obrigatório!")
-    @Size(min = 5, max = 100, message = "O atributo email deve conter no mínimo 5 e no máximo 100 caracteres")
-    private String email;
+	@Email
+	@NotBlank(message = "O atributo email é Obrigatório!")
+	@Size(min = 5, max = 100, message = "O atributo email deve conter no mínimo 5 e no máximo 100 caracteres")
+	private String email;
 
-    @NotBlank(message = "O atributo cpf é Obrigatório!")
-    @Size(min = 11, max = 11, message = "O atributo cpf deve conter no mínimo 11 e no máximo 11 caracteres")
-    private String cpf;
+	@NotBlank(message = "O atributo cpf é Obrigatório!")
+	@Size(min = 11, max = 11, message = "O atributo cpf deve conter no mínimo 11 e no máximo 11 caracteres")
+	private String cpf;
 
-    @NotBlank(message = "O atributo senha é Obrigatório!")
-    @Size(min = 8, message = "O atributo senha deve conter no mínimo 8 caracteres")
-    private String senha;
+	@NotBlank(message = "O atributo senha é Obrigatório!")
+	@Size(min = 8, message = "O atributo senha deve conter no mínimo 8 caracteres")
+	private String senha;
 
-    private String foto;
+	private String foto;
 
-    private Date nascimento;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("usuario")
+	private List<Servico> servico;
 
-    @NotBlank(message = "O atributo tipo é Obrigatório!")
-    private String tipo;
+	public Long getId() {
+		return id;
+	}
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.REMOVE)
-    @JsonIgnoreProperties("usuario")
-    private List<Servico> servico;
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    // Getters and Setters
+	public String getNome() {
+		return nome;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public String getCpf() {
+		return cpf;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public String getSenha() {
+		return senha;
+	}
 
-    public String getCpf() {
-        return cpf;
-    }
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
+	public String getFoto() {
+		return foto;
+	}
 
-    public String getSenha() {
-        return senha;
-    }
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
 
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
+	public List<Servico> getServico() {
+		return servico;
+	}
 
-    public String getFoto() {
-        return foto;
-    }
+	public void setServico(List<Servico> servico) {
+		this.servico = servico;
+	}
 
-    public void setFoto(String foto) {
-        this.foto = foto;
-    }
-
-    public Date getNascimento() {
-        return nascimento;
-    }
-
-    public void setNascimento(Date nascimento) {
-        this.nascimento = nascimento;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public List<Servico> getServico() {
-        return servico;
-    }
-
-    public void setServico(List<Servico> servico) {
-        this.servico = servico;
-    }
 }
